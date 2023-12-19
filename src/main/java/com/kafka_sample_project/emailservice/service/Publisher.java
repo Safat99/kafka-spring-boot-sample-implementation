@@ -1,17 +1,32 @@
 package com.kafka_sample_project.emailservice.service;
 
-import com.kafka_sample_project.emailservice.config.KafkaTopicConfig;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kafka_sample_project.emailservice.dto.TestDto;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 public class Publisher {
 
-    private KafkaTopicConfig kafkaTopicConfig;
-    private KafkaTemplate<String, Object> kafkaTemplate;
+    private final KafkaTemplate<String, Object> kafkaTemplate;
+    private final ObjectMapper objectMapper;
 
-    public void SendMessage(String topic, TestDto dto){
-        kafkaTemplate.send(topic, dto);
+    public Publisher(KafkaTemplate<String, Object> kafkaTemplate, ObjectMapper objectMapper) {
+        this.kafkaTemplate = kafkaTemplate;
+        this.objectMapper = objectMapper;
+    }
+
+    public void sendMessage(String topic, String message) {
+//        try {
+//            String json = objectMapper.writeValueAsString(dto);
+//            System.out.println("josn: " + json);
+            kafkaTemplate.send(topic, message);
+            log.info("String sent!!");
+//        } catch (JsonProcessingException e) {
+//            log.error("error happened", e);
+//        }
     }
 }

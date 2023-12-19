@@ -29,8 +29,8 @@ public class KafkaTopicConfig {
     public NewTopic topic() {
         return TopicBuilder
                 .name(ApplicationConstant.MAIL_TOPIC)
-                .partitions(2)
-                .replicas(2)
+                .partitions(1)
+                .replicas(1)
                 .build();
     }
 
