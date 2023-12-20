@@ -11,15 +11,14 @@ Steps
 
 ## Outputs
 
-Sending string from the payload to kafka<br><br>
+1. Sending string from the payload to kafka<br><br>
 ![postman-string](outputs/postman_send_string.png)
-
-Now Kafka in kafka the message(string) will be look like this:
+<br><br>Now Kafka in kafka the message(string) will be look like this:<br><br>
 ![kafka-console-string](outputs/string_in_kafka.png)
 
 
-Sending object from the payload to kafka<br><br>
+2. Sending object from the payload to kafka<br><br>
 ![postman-object](outputs/postman_send_object.png)
-
-Now Kafka in kafka the message(object) will be look like this:
+<br><br>
+Now Kafka in kafka the message(object) will be look like this:<br><br>
 ![kafka-console-dto](outputs/objects_in_kafka.png)
