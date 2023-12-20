@@ -23,5 +23,10 @@ public class KafkaController {
         return ResponseEntity.ok("Message sent!!");
     }
 
+    @PostMapping("/send-object")
+    public ResponseEntity<String> sendObject(@RequestBody TestDto testDto) {
+        messagePublisher.sendObject(ApplicationConstant.MAIL_TOPIC_OBJECT, testDto);
+        return ResponseEntity.ok("Object sent!!");
+    }
 
 }

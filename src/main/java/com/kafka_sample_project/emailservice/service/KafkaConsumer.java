@@ -10,11 +10,14 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class KafkaConsumer {
 
-    @KafkaListener(topics = ApplicationConstant.MAIL_TOPIC, groupId = ApplicationConstant.GROUP_ID)
-//    public void listen(TestDto dto) {
-//        log.info("Received the following dto: " + dto.toString());
-//    }
+    @KafkaListener(topics = ApplicationConstant.MAIL_TOPIC, groupId = ApplicationConstant.GROUP_ID_STRING)
     public void listen(String message) {
         log.info("Received the following message:" + message);
+    }
+
+    @KafkaListener(topics = ApplicationConstant.MAIL_TOPIC_OBJECT, groupId = ApplicationConstant.GROUP_ID_OBJECT, containerFactory = "kafkaListenerJsonContainerFactory")
+    public void listenObject(TestDto dto) {
+        log.info("<<<<<<<<<<<< object received from kafka invoked!! \n");
+        log.info("Received the following object:" +  dto);
     }
 }

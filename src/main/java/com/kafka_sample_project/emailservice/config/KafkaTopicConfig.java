@@ -18,6 +18,9 @@ public class KafkaTopicConfig {
     @Value( value = "${spring.kafka.bootstrap-servers}")
     private String bootstrapAddress;
 
+    @Value("${spring.kafka.topic.name}")
+    private String topicName;
+
     @Bean
     public KafkaAdmin kafkaAdmin() {
         Map<String, Object> configs = new HashMap<>();
@@ -31,6 +34,15 @@ public class KafkaTopicConfig {
                 .name(ApplicationConstant.MAIL_TOPIC)
                 .partitions(1)
                 .replicas(1)
+                .build();
+    }
+
+    @Bean
+    public NewTopic topicObject() {
+        return TopicBuilder
+                .name(topicName)
+//                .partitions(1)
+//                .replicas(1)
                 .build();
     }
 
